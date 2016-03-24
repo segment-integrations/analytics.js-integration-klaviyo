@@ -9,7 +9,7 @@ describe('Klaviyo', function() {
   var analytics;
   var klaviyo;
   var options = {
-    apiKey: 'x'
+    apiKey: 'hfWBjc'
   };
 
   beforeEach(function() {
@@ -90,8 +90,8 @@ describe('Klaviyo', function() {
       });
 
       it('should send an id and traits', function() {
-        analytics.identify('id', { trait: true });
-        analytics.called(window._learnq.push, ['identify', { $id: 'id', trait: true }]);
+        analytics.identify('horseRadish', { email: 'horses@horses.com', foo: true });
+        analytics.called(window._learnq.push, ['identify', { $id: 'horseRadish', $email: 'horses@horses.com', foo: true }]);
       });
 
       it('should alias traits', function() {
@@ -142,6 +142,65 @@ describe('Klaviyo', function() {
       it('should alias revenue to `$value`', function() {
         analytics.track('event', { revenue: 90 });
         analytics.called(window._learnq.push, ['track', 'event', { $value: 90 }]);
+      });
+
+      it('should send completed order', function(){
+        analytics.track('Completed Order', {
+          orderId: '50314b8e9bcf000000000000',
+          total: 30,
+          revenue: 25,
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD',
+          products: [
+            {
+              id: '507f1f77bcf86cd799439011',
+              sku: '45790-32',
+              name: 'Monopoly: 3rd Edition',
+              price: 19,
+              quantity: 1,
+              category: 'Games',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png'
+            },
+            {
+              id: '505bd76785ebb509fc183733',
+              sku: '46493-32',
+              name: 'Suh dude',
+              price: 17.38,
+              quantity: 2,
+              category: 'Interwebs'
+            }
+          ]
+        });
+        analytics.called(window._learnq.push, ['track', 'Completed Order', {
+          $event_id: '50314b8e9bcf000000000000',
+          $value: 25,
+          Categories: ['Games', 'Interwebs'],
+          ItemNames: ['Monopoly: 3rd Edition', 'Suh dude'],
+          Items: [
+            {
+              SKU: '45790-32',
+              Name: 'Monopoly: 3rd Edition',
+              Quantity: 1,
+              ItemPrice: 19,
+              RowTotal: 19,
+              ProductURL: 'http://www.example.com/path/to/product',
+              ImageURL: 'http://www.example.com/path/to/product/image.png',
+              Categories: ['Games']
+            },
+            {
+              SKU: '46493-32',
+              Name: 'Suh dude',
+              Quantity: 2,
+              ItemPrice: 17.38,
+              RowTotal: 17.38,
+              Categories: ['Interwebs']
+            }
+          ]
+        }]);
       });
     });
   });
