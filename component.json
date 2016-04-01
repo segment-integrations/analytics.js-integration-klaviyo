@@ -2,7 +2,7 @@
   "name": "analytics.js-integration-klaviyo",
   "repo": "segment-integrations/analytics.js-integration-klaviyo",
   "description": "The Klaviyo analytics.js integration.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "main": "lib/index.js",
   "dependencies": {
