@@ -188,8 +188,8 @@ describe('Klaviyo', function() {
               Quantity: 1,
               ItemPrice: 19,
               RowTotal: 19,
-              ProductURL: 'http://www.example.com/path/to/product',
-              ImageURL: 'http://www.example.com/path/to/product/image.png',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png',
               Categories: ['Games']
             },
             {
@@ -259,8 +259,8 @@ describe('Klaviyo', function() {
               Quantity: 1,
               ItemPrice: 19,
               RowTotal: 19,
-              ProductURL: 'http://www.example.com/path/to/product',
-              ImageURL: 'http://www.example.com/path/to/product/image.png',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png',
               Categories: ['Games'],
               customItemProp: 'glenncoco',
               friday: 'is here'
