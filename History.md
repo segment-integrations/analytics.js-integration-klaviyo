@@ -1,3 +1,10 @@
+
+1.0.6 / 2016-05-13
+==================
+
+  * remove lookup for product and image urls
+  * let custom props pass
+
 1.0.5 / 2016-05-07
 ==================
 
