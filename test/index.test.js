@@ -182,6 +182,7 @@ describe('Klaviyo', function() {
           ItemNames: ['Monopoly: 3rd Edition', 'Suh dude'],
           Items: [
             {
+              id: '507f1f77bcf86cd799439011',
               SKU: '45790-32',
               Name: 'Monopoly: 3rd Edition',
               Quantity: 1,
@@ -192,6 +193,7 @@ describe('Klaviyo', function() {
               Categories: ['Games']
             },
             {
+              id: '505bd76785ebb509fc183733',
               SKU: '46493-32',
               Name: 'Suh dude',
               Quantity: 2,
@@ -199,7 +201,88 @@ describe('Klaviyo', function() {
               RowTotal: 17.38,
               Categories: ['Interwebs']
             }
+          ],
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD'
+        }]);
+      });
+
+      it('should let custom props pass', function(){
+        analytics.track('Completed Order', {
+          orderId: '50314b8e9bcf000000000000',
+          letMePass: 'hi',
+          customProp: true,
+          total: 30,
+          revenue: 25,
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD',
+          products: [
+            {
+              id: '507f1f77bcf86cd799439011',
+              sku: '45790-32',
+              name: 'Monopoly: 3rd Edition',
+              price: 19,
+              quantity: 1,
+              category: 'Games',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png',
+              customItemProp: 'glenncoco',
+              friday: 'is here'
+            },
+            {
+              id: '505bd76785ebb509fc183733',
+              sku: '46493-32',
+              name: 'Suh dude',
+              price: 17.38,
+              quantity: 2,
+              category: 'Interwebs',
+              pikachu: 'pika'
+            }
           ]
+        });
+        analytics.called(window._learnq.push, ['track', 'Completed Order', {
+          $event_id: '50314b8e9bcf000000000000',
+          $value: 25,
+          Categories: ['Games', 'Interwebs'],
+          ItemNames: ['Monopoly: 3rd Edition', 'Suh dude'],
+          Items: [
+            {
+              id: '507f1f77bcf86cd799439011',
+              SKU: '45790-32',
+              Name: 'Monopoly: 3rd Edition',
+              Quantity: 1,
+              ItemPrice: 19,
+              RowTotal: 19,
+              ProductURL: 'http://www.example.com/path/to/product',
+              ImageURL: 'http://www.example.com/path/to/product/image.png',
+              Categories: ['Games'],
+              customItemProp: 'glenncoco',
+              friday: 'is here'
+            },
+            {
+              id: '505bd76785ebb509fc183733',
+              SKU: '46493-32',
+              Name: 'Suh dude',
+              Quantity: 2,
+              ItemPrice: 17.38,
+              RowTotal: 17.38,
+              Categories: ['Interwebs'],
+              pikachu: 'pika'
+            }
+          ],
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD',
+          letMePass: 'hi',
+          customProp: true
         }]);
       });
     });
