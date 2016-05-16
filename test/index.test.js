@@ -210,6 +210,65 @@ describe('Klaviyo', function() {
         }]);
       });
 
+      it('should send an event for each product', function(){
+        analytics.track('Completed Order', {
+          orderId: '50314b8e9bcf000000000000',
+          total: 30,
+          revenue: 25,
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD',
+          products: [
+            {
+              id: '507f1f77bcf86cd799439011',
+              sku: '45790-32',
+              name: 'Monopoly: 3rd Edition',
+              price: 19,
+              quantity: 1,
+              category: 'Games',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png'
+            }
+          ]
+        });
+        analytics.calledTwice(window._learnq.push);
+        analytics.called(window._learnq.push, ['track', 'Completed Order', {
+          $event_id: '50314b8e9bcf000000000000',
+          $value: 25,
+          Categories: ['Games'],
+          ItemNames: ['Monopoly: 3rd Edition'],
+          Items: [
+            {
+              id: '507f1f77bcf86cd799439011',
+              SKU: '45790-32',
+              Name: 'Monopoly: 3rd Edition',
+              Quantity: 1,
+              ItemPrice: 19,
+              RowTotal: 19,
+              ProductURL: 'http://www.example.com/path/to/product',
+              ImageURL: 'http://www.example.com/path/to/product/image.png',
+              Categories: ['Games']
+            }
+          ],
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD'
+        }]);
+        analytics.called(window._learnq.push, ['track', 'Ordered Product', {
+         $event_id: '507f1f77bcf86cd799439011',
+         $value: 19,
+         Name: 'Monopoly: 3rd Edition',
+         Quantity: 1,
+         ProductCategories: ['Games'],
+         ProductURL: 'http://www.example.com/path/to/product',
+         ImageURL: 'http://www.example.com/path/to/product/image.png'
+        }]);
+      });
+
       it('should let custom props pass', function(){
         analytics.track('Completed Order', {
           orderId: '50314b8e9bcf000000000000',
