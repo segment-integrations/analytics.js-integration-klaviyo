@@ -265,7 +265,8 @@ describe('Klaviyo', function() {
          Quantity: 1,
          ProductCategories: ['Games'],
          ProductURL: 'http://www.example.com/path/to/product',
-         ImageURL: 'http://www.example.com/path/to/product/image.png'
+         ImageURL: 'http://www.example.com/path/to/product/image.png',
+         SKU: '45790-32'
         }]);
       });
 
