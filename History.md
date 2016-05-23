@@ -1,4 +1,10 @@
 
+1.0.9 / 2016-05-23
+==================
+
+  * Merge pull request #6 from segment-integrations/add-sku
+  * Added SKU to "Ordered Product" event.
+
 1.0.8 / 2016-05-17
 ==================
 
