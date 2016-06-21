@@ -1,8 +1,9 @@
+'use strict';
 
-var Analytics = require('analytics.js-core').constructor;
-var integration = require('analytics.js-integration');
-var sandbox = require('clear-env');
-var tester = require('analytics.js-integration-tester');
+var Analytics = require('@segment/analytics.js-core').constructor;
+var integration = require('@segment/analytics.js-integration');
+var sandbox = require('@segment/clear-env');
+var tester = require('@segment/analytics.js-integration-tester');
 var Klaviyo = require('../lib/');
 
 describe('Klaviyo', function() {
@@ -144,7 +145,7 @@ describe('Klaviyo', function() {
         analytics.called(window._learnq.push, ['track', 'event', { $value: 90 }]);
       });
 
-      it('should send completed order', function(){
+      it('should send completed order', function() {
         analytics.track('Completed Order', {
           orderId: '50314b8e9bcf000000000000',
           total: 30,
@@ -210,7 +211,7 @@ describe('Klaviyo', function() {
         }]);
       });
 
-      it('should send an event for each product', function(){
+      it('should send an event for each product', function() {
         analytics.track('Completed Order', {
           orderId: '50314b8e9bcf000000000000',
           total: 30,
@@ -259,18 +260,18 @@ describe('Klaviyo', function() {
           currency: 'USD'
         }]);
         analytics.called(window._learnq.push, ['track', 'Ordered Product', {
-         $event_id: '507f1f77bcf86cd799439011',
-         $value: 19,
-         Name: 'Monopoly: 3rd Edition',
-         Quantity: 1,
-         ProductCategories: ['Games'],
-         ProductURL: 'http://www.example.com/path/to/product',
-         ImageURL: 'http://www.example.com/path/to/product/image.png',
-         SKU: '45790-32'
+          $event_id: '507f1f77bcf86cd799439011',
+          $value: 19,
+          Name: 'Monopoly: 3rd Edition',
+          Quantity: 1,
+          ProductCategories: ['Games'],
+          ProductURL: 'http://www.example.com/path/to/product',
+          ImageURL: 'http://www.example.com/path/to/product/image.png',
+          SKU: '45790-32'
         }]);
       });
 
-      it('should let custom props pass', function(){
+      it('should let custom props pass', function() {
         analytics.track('Completed Order', {
           orderId: '50314b8e9bcf000000000000',
           letMePass: 'hi',
