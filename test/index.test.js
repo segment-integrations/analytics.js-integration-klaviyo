@@ -147,7 +147,7 @@ describe('Klaviyo', function() {
 
       it('should send completed order', function() {
         analytics.track('Completed Order', {
-          orderId: '50314b8e9bcf000000000000',
+          order_id: '50314b8e9bcf000000000000',
           total: 30,
           revenue: 25,
           shipping: 3,
@@ -157,7 +157,7 @@ describe('Klaviyo', function() {
           currency: 'USD',
           products: [
             {
-              id: '507f1f77bcf86cd799439011',
+              product_id: '507f1f77bcf86cd799439011',
               sku: '45790-32',
               name: 'Monopoly: 3rd Edition',
               price: 19,
@@ -167,7 +167,7 @@ describe('Klaviyo', function() {
               imageUrl: 'http://www.example.com/path/to/product/image.png'
             },
             {
-              id: '505bd76785ebb509fc183733',
+              product_id: '505bd76785ebb509fc183733',
               sku: '46493-32',
               name: 'Suh dude',
               price: 17.38,
@@ -213,7 +213,7 @@ describe('Klaviyo', function() {
 
       it('should send an event for each product', function() {
         analytics.track('Completed Order', {
-          orderId: '50314b8e9bcf000000000000',
+          order_id: '50314b8e9bcf000000000000',
           total: 30,
           revenue: 25,
           shipping: 3,
@@ -223,7 +223,7 @@ describe('Klaviyo', function() {
           currency: 'USD',
           products: [
             {
-              id: '507f1f77bcf86cd799439011',
+              product_id: '507f1f77bcf86cd799439011',
               sku: '45790-32',
               name: 'Monopoly: 3rd Edition',
               price: 19,
@@ -273,7 +273,7 @@ describe('Klaviyo', function() {
 
       it('should let custom props pass', function() {
         analytics.track('Completed Order', {
-          orderId: '50314b8e9bcf000000000000',
+          order_id: '50314b8e9bcf000000000000',
           letMePass: 'hi',
           customProp: true,
           total: 30,
@@ -285,7 +285,7 @@ describe('Klaviyo', function() {
           currency: 'USD',
           products: [
             {
-              id: '507f1f77bcf86cd799439011',
+              product_id: '507f1f77bcf86cd799439011',
               sku: '45790-32',
               name: 'Monopoly: 3rd Edition',
               price: 19,
@@ -297,7 +297,7 @@ describe('Klaviyo', function() {
               friday: 'is here'
             },
             {
-              id: '505bd76785ebb509fc183733',
+              product_id: '505bd76785ebb509fc183733',
               sku: '46493-32',
               name: 'Suh dude',
               price: 17.38,
