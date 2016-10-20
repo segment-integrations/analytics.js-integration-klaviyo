@@ -260,7 +260,78 @@ describe('Klaviyo', function() {
           currency: 'USD'
         }]);
         analytics.called(window._learnq.push, ['track', 'Ordered Product', {
-          $event_id: '507f1f77bcf86cd799439011',
+          $event_id: '50314b8e9bcf000000000000_507f1f77bcf86cd799439011',
+          $value: 19,
+          Name: 'Monopoly: 3rd Edition',
+          Quantity: 1,
+          ProductCategories: ['Games'],
+          ProductURL: 'http://www.example.com/path/to/product',
+          ImageURL: 'http://www.example.com/path/to/product/image.png',
+          SKU: '45790-32'
+        }]);
+      });
+
+      it('should have the correct $event_id for Ordered Product if id passed as product_id', function() {
+        analytics.track('Completed Order', {
+          order_id: '50314b8e9bcf000000000000',
+          total: 30,
+          revenue: 25,
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD',
+          products: [
+            {
+              id: '507f1f77bcf86cd799439011',
+              sku: '45790-32',
+              name: 'Monopoly: 3rd Edition',
+              price: 19,
+              quantity: 1,
+              category: 'Games',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png'
+            }
+          ]
+        });
+        analytics.calledTwice(window._learnq.push);
+        analytics.called(window._learnq.push, ['track', 'Ordered Product', {
+          $event_id: '50314b8e9bcf000000000000_507f1f77bcf86cd799439011',
+          $value: 19,
+          Name: 'Monopoly: 3rd Edition',
+          Quantity: 1,
+          ProductCategories: ['Games'],
+          ProductURL: 'http://www.example.com/path/to/product',
+          ImageURL: 'http://www.example.com/path/to/product/image.png',
+          SKU: '45790-32'
+        }]);
+      });
+
+      it('should have the correct $event_id for Ordered Product if sku is passed and not id or produt_id', function() {
+        analytics.track('Completed Order', {
+          order_id: '50314b8e9bcf000000000000',
+          total: 30,
+          revenue: 25,
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          coupon: 'hasbros',
+          currency: 'USD',
+          products: [
+            {
+              sku: '45790-32',
+              name: 'Monopoly: 3rd Edition',
+              price: 19,
+              quantity: 1,
+              category: 'Games',
+              productUrl: 'http://www.example.com/path/to/product',
+              imageUrl: 'http://www.example.com/path/to/product/image.png'
+            }
+          ]
+        });
+        analytics.calledTwice(window._learnq.push);
+        analytics.called(window._learnq.push, ['track', 'Ordered Product', {
+          $event_id: '50314b8e9bcf000000000000_45790-32',
           $value: 19,
           Name: 'Monopoly: 3rd Edition',
           Quantity: 1,

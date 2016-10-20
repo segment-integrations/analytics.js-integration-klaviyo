@@ -1,4 +1,9 @@
 
+2.1.2 / 2016-10-18
+==================
+
+  * Ensure unique $event_id for auto-generated  ordered product events
+
 2.1.1 / 2016-09-07
 ==================
 
