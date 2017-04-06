@@ -80,9 +80,15 @@ describe('Klaviyo', function() {
         analytics.stub(window._learnq, 'push');
       });
 
-      it('should send an id', function() {
+      it('should send an $id', function() {
         analytics.identify('id');
         analytics.called(window._learnq.push, ['identify', { $id: 'id' }]);
+      });
+
+      it('should not send an id if enforceEmail is enabled', function() {
+        klaviyo.options.enforceEmail = true;
+        analytics.identify('id');
+        analytics.called(window._learnq.push, ['identify', { id: 'id' }]);
       });
 
       it('shouldnt send just traits', function() {
