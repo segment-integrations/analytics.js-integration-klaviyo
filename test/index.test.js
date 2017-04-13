@@ -87,8 +87,8 @@ describe('Klaviyo', function() {
 
       it('should not send an id if enforceEmail is enabled', function() {
         klaviyo.options.enforceEmail = true;
-        analytics.identify('id');
-        analytics.called(window._learnq.push, ['identify', { id: 'id' }]);
+        analytics.identify('id', { email: 'han@segment.com' });
+        analytics.called(window._learnq.push, ['identify', { $email: 'han@segment.com' }]);
       });
 
       it('shouldnt send just traits', function() {
